@@ -105,10 +105,14 @@ class Scanner {
                     while (ch != '\n' && ch != EOFCH) {
                         nextCh();
                     }
-                } else {
-                    reportScannerError("Operator / is not supported in j--.");
                 }
-            } else {
+                else {
+                    //reportScannerError("Operator / is not supported in j--.");
+                	TokenInfo  ti = new TokenInfo(DIV, line);
+                	return ti;
+                }
+            } 
+            else {
                 moreWhiteSpace = false;
             }
         }
@@ -332,7 +336,8 @@ class Scanner {
         line = input.line();
         try {
             ch = input.nextChar();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             reportScannerError("Unable to read characters from input");
         }
     }

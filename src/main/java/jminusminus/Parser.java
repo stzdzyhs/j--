@@ -1112,7 +1112,7 @@ public class Parser {
     }
 
     /**
-     * Parse a multiplicative expression.
+     * Parse a multiplicative or div expression.
      * 
      * <pre>
      *   multiplicativeExpression ::= unaryExpression  // level 2
@@ -1129,7 +1129,11 @@ public class Parser {
         while (more) {
             if (have(STAR)) {
                 lhs = new JMultiplyOp(line, lhs, unaryExpression());
-            } else {
+            }
+            else if ( have ( DIV )) {
+            	lhs = new JDivideOp (line, lhs, unaryExpression ());
+            }
+            else {
                 more = false;
             }
         }
